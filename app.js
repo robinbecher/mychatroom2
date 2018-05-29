@@ -22,7 +22,7 @@ io.on('connection', function(socket){
 });
 
 function emitUserNumber() {
-    io.emit('there are currently '+num+' people in this chatroom.');
+    io.emit('chat message','there are currently '+num+' people in this chatroom.');
 };
 
 
