@@ -12,7 +12,11 @@ io.on('connection', function(socket){
     io.emit('chat message', 'Somebody has joined the chatroom!');
     emitUserNumber();
     socket.on('chat message', function(msg, name){
-    io.emit('chat message', name+': '+msg);
+        // if (checkIsCommand(msg)){
+
+        // }else{
+            io.emit('chat message', name+': '+msg);
+        // }
   });
     socket.on('disconnect', function () {
       io.emit('Somebody has left the chatroom!');
@@ -27,7 +31,15 @@ function emitUserNumber() {
     io.emit('chat message','there are currently '+allClients.length+' people in this chatroom.');
 };
 
+function checkIsCommand(msg){
+    msg+="";
+    if (msg.startsWith("/")){
+        return true;
+    }else{
+        return false;
+    }
+}
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+http.listen(80, function(){
+  console.log('listening on *:80');
 });
