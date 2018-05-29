@@ -10,7 +10,7 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
     num++;
     io.emit('chat message', 'Somebody has joined the chatroom!');
-    emitUserNumber(this);
+    emitUserNumber();
     socket.on('chat message', function(msg, name){
     io.emit('chat message', name+': '+msg);
   });
@@ -21,8 +21,8 @@ io.on('connection', function(socket){
 
 });
 
-function emitUserNumber(who) {
-    this.io.emit('there are currently '+num+' people in this chatroom.');
+function emitUserNumber() {
+    io.emit('there are currently '+num+' people in this chatroom.');
 };
 
 
