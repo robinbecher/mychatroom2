@@ -1,14 +1,14 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var num = 0;
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+var allClients=[];
 io.on('connection', function(socket){
-    num++;
+    allClients.push(socket);
     io.emit('chat message', 'Somebody has joined the chatroom!');
     emitUserNumber();
     socket.on('chat message', function(msg, name){
@@ -16,13 +16,15 @@ io.on('connection', function(socket){
   });
     socket.on('disconnect', function () {
       io.emit('Somebody has left the chatroom!');
+      var i = allClients.indexOf(socket);
+      allClients.splice(i,1);
       emitUserNumber();
     })
 
 });
 
 function emitUserNumber() {
-    io.emit('chat message','there are currently '+num+' people in this chatroom.');
+    io.emit('chat message','there are currently '+allClients.length+' people in this chatroom.');
 };
 
 
