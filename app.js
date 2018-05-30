@@ -3,7 +3,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/indexOLD.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 var allClients=[];
