@@ -31,7 +31,9 @@
             return false;
         });
         socket.on('chat message', function(msg){
-            $('#messages').append($('<li>').text(msg));
+            var d = new Date();
+            var m = d.getHours()+":"+d.getMinutes();
+            $('#messages').append($('<li>').text(m+' - '+msg));
             // if($('#messages').getElementsByTagName('li').length > 20){
             //     $('#messages').getElementsByTagName('li')[0].remove();
             // }
