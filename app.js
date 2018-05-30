@@ -7,6 +7,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/chatroom.html', function(req, res){
+    //TODO only if user is logged in
     res.sendFile(__dirname + '/chatroom.html');
 });
 

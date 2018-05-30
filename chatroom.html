@@ -22,6 +22,7 @@
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
     $(function () {
+        //TODO if user is not logged in, return
         var socket = io();
         socket.emit('user joined');
         $('form').submit(function(){
