@@ -6,6 +6,10 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/chatroom.html', function(req, res){
+    res.sendFile(__dirname + '/chatroom.html');
+});
+
 
 
 var allClients=[];
