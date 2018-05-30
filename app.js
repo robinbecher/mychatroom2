@@ -2,13 +2,11 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-// app.get('/', function(req, res){
-//   res.sendFile(__dirname + '/index.html');
-// });
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
 
-var connect = require("connect");
-var app = connect().use(connect.static(__dirname));
-app.listen(80);
+
 
 var allClients=[];
 io.on('connection', function(socket){
