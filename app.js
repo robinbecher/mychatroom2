@@ -23,11 +23,9 @@ io.on('connection', function(socket){
     io.emit('chat message', 'Somebody has joined the chatroom!');
     emitUserNumber();
     socket.on('chat message', function(msg, name){
-        // if (checkIsCommand(msg)){
-
-        // }else{
+        if(isValid(msg)){
             io.emit('chat message', name+': '+msg);
-        // }
+        }
   });
     socket.on('disconnect', function () {
       io.emit('Somebody has left the chatroom!');
@@ -38,13 +36,21 @@ io.on('connection', function(socket){
 
 });
 
+function isValid(msg){
+    msg+="";
+    if(msg===""){
+        return false;
+    }
+    return true;
+}
+
 function emitUserNumber() {
     io.emit('chat message','there are currently '+allClients.length+' people in this chatroom.');
 };
 
 function checkIsCommand(msg){
     msg+="";
-    if (msg.startsWith("/")){
+    if (msg.substring(0,0)==="/"){
         return true;
     }else{
         return false;
