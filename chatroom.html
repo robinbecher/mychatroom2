@@ -47,6 +47,10 @@
         });
     });
 
+    function changeUsername(){
+        localStorage.clear();
+    }
+
     function setCookie(cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -93,6 +97,9 @@
     <form action="">
         <!--<input id="name" class="NameInput"/>-->
         <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <form onsubmit="changeUsername()">
+        <button id="cu" type="submit">Change Username</button>
     </form>
 </div>
 </body>
