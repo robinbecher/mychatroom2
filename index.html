@@ -150,7 +150,7 @@
         </div>
 
         <div class="container">
-            <label id="unameLabel" for="uname"><b>Username</b></label>
+            <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
             <!--<label for="psw"><b>Password</b></label>-->
             <!--<input type="password" placeholder="Enter Password" name="psw" required>-->
@@ -180,7 +180,7 @@
 
     function storeUsername(){
         //TODO hier in localstorage username speichern und in chatroom abfragen
-        sessionStorage.setItem("name",$('#unameLabel').uname+"");
+        sessionStorage.setItem("name",$('#unameLabel').value+"");
     }
 
     function setCookie(cname, cvalue, exdays) {
