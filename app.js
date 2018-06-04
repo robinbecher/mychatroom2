@@ -33,7 +33,6 @@ io.on('connection', function(socket){
       allClients.splice(i,1);
       emitUserNumber();
     })
-
 });
 
 function isValid(msg){
@@ -56,6 +55,7 @@ function checkIsCommand(msg){
         return false;
     }
 }
+
 
 http.listen(80, function(){
   console.log('listening on *:80');
