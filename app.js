@@ -15,6 +15,10 @@ app.get('/files/avatars.png', function(req, res){
     res.sendFile(__dirname + '/files/avatars.png');
 });
 
+app.post('chatroom.html', function (req,res) {
+    res.sendFile(__dirname + '/chatroom.html');
+})
+
 
 
 var allClients=[];
