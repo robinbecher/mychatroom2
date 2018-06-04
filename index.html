@@ -168,6 +168,13 @@
 </div>
 
 <script>
+
+    alert(sessionStorage.getItem("name"));
+
+    if(sessionStorage.getItem("name")){
+        window.location.replace('/chatroom.html');
+    }
+
     // Get the modal
     var modal = document.getElementById('id01');
 
