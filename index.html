@@ -180,7 +180,8 @@
 
     function storeUsername(){
         //TODO hier in localstorage username speichern und in chatroom abfragen
-        sessionStorage.setItem("name",$('#unameText').value+"");
+        var username = document.getElementById("unameText").value;
+        sessionStorage.setItem("name", username);
     }
 
     function setCookie(cname, cvalue, exdays) {
