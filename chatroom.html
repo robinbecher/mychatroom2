@@ -27,8 +27,10 @@
         var socket = io();
         socket.emit('user joined');
 
+        var uname = sessionStorage.getItem("name");
+
         $('form').submit(function(){
-            socket.emit('chat message', $('#m').val(), $('#name').val());
+            socket.emit('chat message', $('#m').val(), uname);
             $('#m').val('');
             return false;
         });
@@ -89,14 +91,11 @@
 
 <div class="lowerArea">
     <form action="">
-        <input id="name" class="NameInput"/>
+        <!--<input id="name" class="NameInput"/>-->
         <input id="m" autocomplete="off" /><button>Send</button>
     </form>
 </div>
 </body>
 
-<?php
-            echo "Hello!"
 
-            ?>
 </html>
