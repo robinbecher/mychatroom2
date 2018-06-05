@@ -24,7 +24,7 @@
     $(function () {
 
         // If user is not logged in, return to login page
-        if(sessionStorage.getItem("name") === null){
+        if(sessionStorage.getItem("name") === null || sessionStorage.getItem("name")==="null" || sessionStorage.getItem("name")===""){
             returnToLoginPage();
         }
 
