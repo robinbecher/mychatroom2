@@ -14,7 +14,7 @@
         #m { border: 0; padding: 10px; width: 80%; margin-right: .5%; }
         #send { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
         .upperArea {  }
-        .lowerArea { margin-top: 10px; }
+        .lowerArea { margin-top: 10px;}
     </style>
 </head>
 
@@ -45,6 +45,7 @@
             var d = new Date();
             var m = d.getHours()+":"+d.getMinutes();
             $('#messages').append($('<li>').text(m+' - '+msg));
+            $('#messages').scrollTop += 20;
             // if($('#messages').getElementsByTagName('li').length > 20){
             //     $('#messages').getElementsByTagName('li')[0].remove();
             // }

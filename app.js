@@ -28,15 +28,6 @@ app.get('/files/avatars.png', function(req, res){
     res.sendFile(__dirname + '/files/avatars.png');
 });
 
-// app.post('/chatroom.html', function (req,res) {
-//     //TODO Pass name to html file????
-//     var name = req.body.name;
-//     res.send(name);
-//     res.sendFile(__dirname + '/chatroom.html');
-// })
-
-
-
 var allClients=[];
 io.on('connection', function(socket){
     allClients.push(socket);
@@ -75,7 +66,6 @@ function checkIsCommand(msg){
         return false;
     }
 }
-
 
 http.listen(80, function(){
   console.log('listening on *:80');
