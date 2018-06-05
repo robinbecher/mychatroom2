@@ -169,7 +169,7 @@
 
 <script>
 
-    if(typeof sessionStorage.getItem("name")!= "undefined"){
+    if(sessionStorage.getItem("name")!== "null"){
         window.location.replace('/chatroom.html');
     }
 
