@@ -23,18 +23,19 @@
 <script>
     $(function () {
 
-        //TODO if user is not logged in, return
+        // If user is not logged in, return to login page
         if(sessionStorage.getItem("name") === null){
-            alert("You are not logged in!");
-            window.location.replace("/index.html");
+            returnToLoginPage();
         }
 
+        //Tell the server that you are here
         var socket = io();
         socket.emit('user joined');
 
         //get username from cookies
         var uname = sessionStorage.getItem("name");
 
+        //Send message
         $('form').submit(function(){
             socket.emit('chat message', $('#m').val(), uname);
             $('#m').val('');
@@ -53,8 +54,13 @@
         });
     });
 
+    function returnToLoginPage(){
+        window.location.replace("/index.html");
+    }
+
     function changeUsername(){
         localStorage.clear();
+        returnToLoginPage();
     }
 
     function setCookie(cname, cvalue, exdays) {
@@ -107,6 +113,9 @@
     <!--<form onsubmit="changeUsername()">-->
         <!--<button id="cu" type="submit">Change Username</button>-->
     <!--</form>-->
+    <div>
+        <button onClick="changeUsername()">Change Username</button>
+    </div>
 </div>
 </body>
 
