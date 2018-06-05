@@ -169,7 +169,7 @@
 
 <script>
 
-    if(sessionStorage.getItem("name") === null){
+    if(sessionStorage.getItem("name") === null || sessionStorage.getItem("name")==="null" || sessionStorage.getItem("name")===""){
 
     }else{
         window.location.replace('/chatroom.html');
