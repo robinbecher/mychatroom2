@@ -24,8 +24,8 @@
     $(function () {
 
         //TODO if user is not logged in, return
-        if(sessionStorage.getItem("name") == "null"){
-            alert("hi");
+        if(sessionStorage.getItem("name") === null){
+            alert("You are not logged in!");
             window.location.replace("/index.html");
         }
 
