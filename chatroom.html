@@ -45,7 +45,7 @@
             var d = new Date();
             var m = d.getHours()+":"+d.getMinutes();
             $('#messages').append($('<li>').text(m+' - '+msg));
-            $('#messages').scrollTop += 20;
+            $('#messageDiv').scrollTop += 20;
             // if($('#messages').getElementsByTagName('li').length > 20){
             //     $('#messages').getElementsByTagName('li')[0].remove();
             // }
@@ -101,7 +101,7 @@
 
 <body>
 
-<div class="upperArea">
+<div id="messageDiv" class="upperArea">
     <ul id="messages"></ul>
     <!--<textarea id="users"></textarea>-->
 </div>
