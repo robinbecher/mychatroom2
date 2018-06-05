@@ -15,6 +15,10 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/index.html', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
+
 app.get('/chatroom.html', function(req, res){
     //TODO only if user is logged in
     res.sendFile(__dirname + '/chatroom.html');
