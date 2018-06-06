@@ -17,10 +17,10 @@
         .lowerArea { margin-top: 10px;}
     </style>
 </head>
-
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
+    //TODO change username button looks ugly
     $(function () {
 
         // If user is not logged in, return to login page
@@ -42,10 +42,8 @@
             return false;
         });
         socket.on('chat message', function(msg){
-            var d = new Date();
-            var m = d.getHours()+":"+d.getMinutes();
-            $('#messages').append($('<li>').text(m+' - '+msg));
-            $('#messageDiv').scrollTop += 20;
+            printMessage(msg);
+
             // if($('#messages').getElementsByTagName('li').length > 20){
             //     $('#messages').getElementsByTagName('li')[0].remove();
             // }
@@ -54,6 +52,23 @@
             $('#messages').append($('<li>').text(msg));
         });
     });
+
+    function printMessage(msg){
+        function getCurrentTimeString() {
+            var d = new Date();
+            return (d.getHours()<10?'0':'') + d.getHours() + ":" + (d.getMinutes()<10?'0':'') + d.getMinutes();
+        }
+
+        var time = getCurrentTimeString();
+        $('#messages').append($('<li>').text(time+' - '+msg));
+
+        //TODO this doesn't work
+        // $('#messageDiv').scrollTop += 20;
+    }
+
+    function debugReceiveMessage(){
+        printMessage("Server: This is a test message");
+    }
 
     function returnToLoginPage(){
         window.location.replace("/index.html");
@@ -115,7 +130,9 @@
         <!--<button id="cu" type="submit">Change Username</button>-->
     <!--</form>-->
     <div>
+
         <button onClick="changeUsername()">Change Username</button>
+        <button onClick="debugReceiveMessage()">(debug) receive message</button>
     </div>
 </div>
 </body>
