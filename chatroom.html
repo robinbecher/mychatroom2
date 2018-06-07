@@ -36,6 +36,7 @@
         var uname = sessionStorage.getItem("name");
 
         //Send message
+        //TODO username should not be sent by user. username should be added to the message by server
         $('form').submit(function(){
             socket.emit('chat message', $('#m').val(), uname);
             $('#m').val('');

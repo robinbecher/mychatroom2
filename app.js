@@ -35,6 +35,7 @@ app.get('/files/avatars.png', function(req, res){
 var allClients=[];
 io.on('connection', function(socket){
     allClients.push(socket);
+    //TODO Who joined?
     io.emit('chat message', 'Somebody has joined the chatroom!');
     emitUserNumber();
     socket.on('chat message', function(msg, name){
