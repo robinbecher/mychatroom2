@@ -1,14 +1,24 @@
 <!doctype html>
 <html>
 <head>
-    <title>Becherzeug - Zeug vom Becher</title>
+    <title>Chatroom of the future</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font: 13px Helvetica, Arial; }
+        body { font: 14px Helvetica, Arial; }
+        .btn-options { border-radius: 12px; padding: 5px; margin-left: 1%; background-color: lightgray}
+        .image-header{width: 5%; height: 5%; animation:spin 20s linear infinite; position: center}
+        @keyframes spin { 100% { transform:rotate(360deg); } }
+        .headerArea { text-align: center }
+        .headerArea h2 { text-align: center }
+        .messageArea {  }
 
-        #messages { overflow-y: auto; width: 100%;height: 80vh; list-style-type: none;
+        #messages { overflow-y: auto; width: 80vw;height: 60vh; list-style-type: none;
             padding: 0;
-            margin: 0 0 40px;
+            margin-left: 1%;
+            margin-right: 20px;
+            border-style: solid;
+            border-radius: 5px;
+            border-color: #000;
         }
         #messages li { padding: 5px 10px; }
         #messages li:nth-child(odd) { background: #eee; }
@@ -16,8 +26,8 @@
         #chatForm { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; margin-top: 40px;}
         #m { border: 0; padding: 10px; width: 80%; margin-right: .5%; }
         #send { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-        .upperArea {  }
-        .lowerArea { margin-top: 10px;}
+        .lowerArea { margin-top: 0;}
+
     </style>
 </head>
 <script src="/socket.io/socket.io.js"></script>
@@ -119,8 +129,12 @@
 </script>
 
 <body>
+<div class="headerArea">
+    <h2>This is the best chatroom</h2>
+    <img class="image-header" src="files/logo.png">
+</div>
 
-<div id="messageDiv" class="upperArea">
+<div id="messageDiv" class="messageArea">
     <ul id="messages"></ul>
     <!--<textarea id="users"></textarea>-->
 </div>
@@ -133,10 +147,9 @@
     <!--<form onsubmit="changeUsername()">-->
         <!--<button id="cu" type="submit">Change Username</button>-->
     <!--</form>-->
-    <div>
-
-        <button onClick="changeUsername()">Change Username</button>
-        <button onClick="debugReceiveMessage()">(debug) receive message</button>
+    <div class="buttonsArea">
+        <button class="btn-options" onClick="changeUsername()">Logout</button>
+        <button class="btn-options" onClick="debugReceiveMessage()">(debug) receive message</button>
     </div>
 </div>
 </body>
