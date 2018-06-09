@@ -6,7 +6,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font: 13px Helvetica, Arial; }
 
-        #messages { overflow: scroll; width: 100%; list-style-type: none;
+        #messages { overflow-y: auto; width: 100%;height: 80vh; list-style-type: none;
             padding: 0;
             margin: 0 0 40px;
         }
@@ -47,10 +47,10 @@
         });
         socket.on('chat message', function(msg){
             printMessage(msg);
-
-            // if($('#messages').getElementsByTagName('li').length > 20){
-            //     $('#messages').getElementsByTagName('li')[0].remove();
-            // }
+            $('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")}, 500);
+            // var items = documents.getElementById('messages').getElementsByTagName("li");
+            // var last = items[items.length-1];
+            // last.scrollIntoView();
         });
         socket.on('user joined', function(msg){
             $('#messages').append($('<li>').text(msg));
