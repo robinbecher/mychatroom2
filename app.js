@@ -32,6 +32,10 @@ app.get('/files/avatars.png', function(req, res){
     res.sendFile(__dirname + '/files/avatars.png');
 });
 
+app.get('/files/logo.png', function(req, res){
+    res.sendFile(__dirname + '/files/logo.png');
+});
+
 var allClients=[];
 io.on('connection', function(socket){
     allClients.push(socket);
