@@ -36,17 +36,21 @@
     //TODO change username button looks ugly
     //TODO Max num of messages
     $(function () {
+        var socket = io();
+        //get username from cookies
+        var uname = sessionStorage.getItem("name");
+
+        window.addEventListener("beforeunload", function(e){
+            socket.emit('disconnect',uname);
+        }, false);
 
         // If user is not logged in, return to login page
         if(sessionStorage.getItem("name") === null || sessionStorage.getItem("name")==="null" || sessionStorage.getItem("name")===""){
             returnToLoginPage();
         }
 
-        //get username from cookies
-        var uname = sessionStorage.getItem("name");
 
         //Tell the server that you are here
-        var socket = io();
         socket.emit('user joined', uname);
 
         //Send message
