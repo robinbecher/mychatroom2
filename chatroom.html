@@ -7,7 +7,7 @@
         body { font: 14px Helvetica, Arial; }
         .btn-options { border-radius: 12px; padding: 5px; margin-left: 1%; background-color: lightgray}
         .image-header{width: 5%; height: 5%; animation:spin 20s linear infinite; position: center}
-        @keyframes spin { 100% { transform:rotate(360deg); } }
+        @keyframes spin { 100% { transform:rotate(360deg); -webkit-transform: rotate(360deg) } }
         .headerArea { text-align: center }
         .headerArea h2 { text-align: center }
         .messageArea {  }
@@ -34,6 +34,7 @@
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
     //TODO change username button looks ugly
+    //TODO Max num of messages
     $(function () {
 
         // If user is not logged in, return to login page
@@ -41,12 +42,12 @@
             returnToLoginPage();
         }
 
-        //Tell the server that you are here
-        var socket = io();
-        socket.emit('user joined');
-
         //get username from cookies
         var uname = sessionStorage.getItem("name");
+
+        //Tell the server that you are here
+        var socket = io();
+        socket.emit('user joined', uname);
 
         //Send message
         //TODO username should not be sent by user. username should be added to the message by server
@@ -58,9 +59,7 @@
         socket.on('chat message', function(msg){
             printMessage(msg);
             $('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")}, 500);
-            // var items = documents.getElementById('messages').getElementsByTagName("li");
-            // var last = items[items.length-1];
-            // last.scrollIntoView();
+
         });
         socket.on('user joined', function(msg){
             $('#messages').append($('<li>').text(msg));
@@ -76,8 +75,6 @@
         var time = getCurrentTimeString();
         $('#messages').append($('<li>').text(time+' - '+msg));
 
-        //TODO this doesn't work
-        // $('#messageDiv').scrollTop += 20;
     }
 
     function debugReceiveMessage(){

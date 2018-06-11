@@ -38,15 +38,17 @@ app.get('/files/logo.png', function(req, res){
 
 var allClients=[];
 io.on('connection', function(socket){
-    allClients.push(socket);
-    //TODO Who joined?
-    io.emit('chat message', 'Somebody has joined the chatroom!');
-    emitUserNumber();
+
     socket.on('chat message', function(msg, name){
         if(isValid(msg)){
             io.emit('chat message', name+': '+msg);
         }
   });
+    socket.on('user joined', function(name){
+        allClients.push(socket);
+        io.emit('chat message', name +' has joined the chatroom!');
+        emitUserNumber();
+    });
     socket.on('disconnect', function () {
       io.emit('Somebody has left the chatroom!');
       var i = allClients.indexOf(socket);
