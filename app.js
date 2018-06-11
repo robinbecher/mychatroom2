@@ -58,7 +58,7 @@ io.on('connection', function(socket){
         emitUserNumber();
     });
     socket.on('disconnect', function (name) {
-      io.emit(name+' has left the chatroom!');
+      io.emit('chat message' ,name+' has left the chatroom!');
       var i = allClients.indexOf(new User(socket,name));
       allClients.splice(i,1);
       emitUserNumber();
