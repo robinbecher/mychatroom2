@@ -36,7 +36,15 @@ app.get('/files/logo.png', function(req, res){
     res.sendFile(__dirname + '/files/logo.png');
 });
 
-var allClients=[];
+class User{
+    constructor(socket, name){
+        this.socket = socket;
+        this.name=name;
+    }
+
+}
+
+let allClients=[];
 io.on('connection', function(socket){
 
     socket.on('chat message', function(msg, name){
@@ -45,13 +53,13 @@ io.on('connection', function(socket){
         }
   });
     socket.on('user joined', function(name){
-        allClients.push(socket);
+        allClients.push(new User(socket,name));
         io.emit('chat message', name +' has joined the chatroom!');
         emitUserNumber();
     });
-    socket.on('disconnect', function () {
-      io.emit('Somebody has left the chatroom!');
-      var i = allClients.indexOf(socket);
+    socket.on('disconnect', function (name) {
+      io.emit(name+' has left the chatroom!');
+      var i = allClients.indexOf(new User(socket,name));
       allClients.splice(i,1);
       emitUserNumber();
     })
@@ -67,8 +75,7 @@ function isValid(msg){
 
 function emitUserNumber() {
     io.emit('chat message','there are currently '+allClients.length+' people in this chatroom.');
-};
-
+}
 function checkIsCommand(msg){
     msg+="";
     if (msg.substring(0,0)==="/"){
