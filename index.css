@@ -1,6 +1,15 @@
 
 body {font-family: Arial, Helvetica, sans-serif;}
 
+.canvas-container{
+    position:fixed;
+}
+
+#canvas{
+    position: fixed;
+    background-attachment: fixed;
+}
+
 /* Full-width input fields */
 input[type=text], input[type=password] {
     width: 100%;
@@ -20,6 +29,9 @@ button {
     border: none;
     cursor: pointer;
     width: 100%;
+    position:relative;
+
+    z-index: +9;
 }
 
 .goButton {

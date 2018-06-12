@@ -1,7 +1,7 @@
 let canvas;
 let c;
 const circleSize = 30;
-const maxDist=200;
+const maxDist=100;
 let mouseX = 0;
 let mouseY = 0;
 
@@ -22,14 +22,20 @@ window.onload = function () {
     animate();
 };
 
+window.addEventListener('resize',function(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+})
+
 
 function Circle(x, y, dx, dy, circleSize) {
     this.x = x;
     this.y = y;
     this.dx = dx;
     this.dy = dy;
-    this.centerX = x + circleSize / 2;
-    this.centerY = y - circleSize / 2;
+    let centerX = x + circleSize / 2;
+    let centerY = y - circleSize / 2;
     let ax=0;
     let ay=0;
 
@@ -47,14 +53,14 @@ function Circle(x, y, dx, dy, circleSize) {
 
     this.update = function () {
         x += dx;
-        y += dy
+        y += dy;
 
         let a = x - mouseX;
         let b = y - mouseY;
         let distance = Math.sqrt(a * a + b * b);
 
         if (distance ===0){
-            distance = Math.random()-0.5;
+            distance = Math.random();
         }
 
         // dx = -1 * a * 0.001 * distance;
