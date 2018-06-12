@@ -31,6 +31,10 @@ app.get('/chatroom.html', function(req, res){
     res.sendFile(__dirname + '/chatroom.html');
 });
 
+app.get('/chatroom.css', function(req, res){
+    res.sendFile(__dirname + '/chatroom.css');
+});
+
 app.get('/files/avatars.png', function(req, res){
     res.sendFile(__dirname + '/files/avatars.png');
 });
