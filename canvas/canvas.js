@@ -73,17 +73,17 @@ function Circle(x, y, dx, dy, circleRadius) {
             dx = dy = 0;
         }
 
-        if (x > innerWidth - circleRadius) {
-            x = innerWidth - circleRadius;
+        if (x > innerWidth - circleRadius*2.5) {
+            x = innerWidth - circleRadius*2.5;
         }
-        if (x < 0 + circleRadius) {
-            x = 0 + circleRadius;
+        if (x < 0 + circleRadius*2.5) {
+            x = 0 + circleRadius*2.5;
         }
-        if (y < 0 + circleRadius) {
-            y = 0 + circleRadius;
+        if (y < 0 + circleRadius*2.5) {
+            y = 0 + circleRadius*2.5;
         }
-        if (y > innerHeight - circleRadius) {
-            y = innerHeight - circleRadius;
+        if (y > innerHeight - circleRadius*2.5) {
+            y = innerHeight - circleRadius*2.5;
         }
     }
 };
