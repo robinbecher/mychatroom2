@@ -83,7 +83,7 @@ function Circle(x, y, dx, dy, circleRadius) {
             y = 0 + circleRadius*2.5;
         }
         if (y > innerHeight - circleRadius*2.5) {
-            y = innerHeight - circleRadius*2.5;
+            y = innerHeight - circleRadius * 2.5;
         }
     }
 };
