@@ -1,6 +1,7 @@
 let canvas;
 let c;
 const circleSize = 30;
+const maxDist=200;
 let mouseX = 0;
 let mouseY = 0;
 
@@ -13,7 +14,7 @@ window.onload = function () {
     canvas.height = window.innerHeight;
 
     document.addEventListener('mousemove', throttle(handleMousemove, 10));
-    canvas.addEventListener('click', function(){
+    canvas.addEventListener('click', function () {
         let circle = new Circle(mouseX, mouseY, 0, 0, circleSize);
         circles.push(circle);
     }, false);
@@ -21,9 +22,6 @@ window.onload = function () {
     animate();
 };
 
-function onClick(){
-
-}
 
 function Circle(x, y, dx, dy, circleSize) {
     this.x = x;
@@ -32,11 +30,18 @@ function Circle(x, y, dx, dy, circleSize) {
     this.dy = dy;
     this.centerX = x + circleSize / 2;
     this.centerY = y - circleSize / 2;
+    let ax=0;
+    let ay=0;
+
+    let r = Math.floor(Math.random()*255);
+    let g = Math.floor(Math.random()*255);
+    let b = Math.floor(Math.random()*255);
+    let color = 'rgb('+r+','+b+','+g+')';
 
     this.draw = function () {
         c.beginPath();
         c.arc(x, y, circleSize, 0, Math.PI * 2, false);
-        c.strokeStyle = 'orange';
+        c.strokeStyle = color;
         c.stroke();
     }
 
@@ -48,20 +53,32 @@ function Circle(x, y, dx, dy, circleSize) {
         let b = y - mouseY;
         let distance = Math.sqrt(a * a + b * b);
 
-        dx = -1 * a * distance * 0.001;
-        dy = -1 * b * distance * 0.001;
-
-        // dx += Math.random()*10;
-        // dy +=Math.random()*10;
-
-        // dx = ;
-        // dy = mouseY - y;
-
-        if (x >= innerWidth - circleSize || x <= 0 + circleSize) {
-            x -= 1;
+        if (distance ===0){
+            distance = Math.random()-0.5;
         }
-        if (y <= 0 + circleSize || y > innerHeight - circleSize) {
-            y -= 1;
+
+        // dx = -1 * a * 0.001 * distance;
+        // dy = -1 * b * 0.001 * distance;
+
+        dx+=ax;
+        dy+=ay;
+
+        ax= a / distance*0.5;
+        ay= b / distance*0.5;
+
+        if (distance>=maxDist){
+            dx=dy=0;
+        }
+
+        if (x > innerWidth - circleSize) {
+            x = innerWidth-circleSize;
+        }if(x < 0 + circleSize){
+            x=0+circleSize;
+        }
+        if (y < 0 + circleSize) {
+            y = 0+circleSize;
+        }if(y > innerHeight - circleSize){
+            y=innerHeight-circleSize;
         }
     }
 };
