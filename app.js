@@ -1,15 +1,6 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-// var bodyParser = require('body-parser')
-// app.use( bodyParser.json() );       // to support JSON-encoded bodies
-// app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-//     extended: true
-// }));
-//
-// app.use(express.json());       // to support JSON-encoded bodies
-// app.use(express.urlencoded()); // to support URL-encoded bodies
-
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
@@ -21,6 +12,18 @@ app.get('/index.css', function(req, res){
 
 app.get('/index.html', function(req, res){
     res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/canvas/canvas.html', function(req, res){
+    res.sendFile(__dirname + '/canvas.html');
+});
+
+app.get('/canvas/canvas.css', function(req, res){
+    res.sendFile(__dirname + '/canvas.css');
+});
+
+app.get('/canvas/canvas.js', function(req, res){
+    res.sendFile(__dirname + '/canvas.js');
 });
 
 app.get('/chatroom.html', function(req, res){
@@ -41,7 +44,6 @@ class User{
         this.socket = socket;
         this.name=name;
     }
-
 }
 
 let allClients=[];

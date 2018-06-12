@@ -36,6 +36,9 @@
     </form>
 </div>
 
+<h2>Canvas Tests</h2>
+<button class="goButton" onclick="moveToCanvasPage()">Go?</button>
+
 <script>
 
     if(sessionStorage.getItem("name") === null || sessionStorage.getItem("name")==="null" || sessionStorage.getItem("name")===""){
@@ -52,6 +55,10 @@
         if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
+
+    function moveToCanvasPage(){
+        window.location.replace('/canvas.html');
     }
 
     function storeUsername(){
