@@ -15,15 +15,15 @@ app.get('/index.html', function(req, res){
 });
 
 app.get('/canvas/canvas.html', function(req, res){
-    res.sendFile(__dirname + '/canvas.html');
+    res.sendFile(__dirname + '/canvas/canvas.html');
 });
 
 app.get('/canvas/canvas.css', function(req, res){
-    res.sendFile(__dirname + '/canvas.css');
+    res.sendFile(__dirname + '/canvas/canvas.css');
 });
 
 app.get('/canvas/canvas.js', function(req, res){
-    res.sendFile(__dirname + '/canvas.js');
+    res.sendFile(__dirname + '/canvas/canvas.js');
 });
 
 app.get('/chatroom.html', function(req, res){
