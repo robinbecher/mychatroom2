@@ -1,13 +1,13 @@
 
 body {font-family: Arial, Helvetica, sans-serif;}
 
-.canvas-container{
-    position:fixed;
-}
-
-#canvas{
+#canvas-bubblechase-div{
     position: fixed;
     background-attachment: fixed;
+}
+
+#canvas-gravity{
+    position: fixed;
 }
 
 /* Full-width input fields */

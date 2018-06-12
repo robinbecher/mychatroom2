@@ -1,13 +1,13 @@
 let canvas;
 let c;
-const circleSize = 30;
-const maxDist=150;
+const circleRadius = 15;
+const maxDist = 150;
 let mouseX = 0;
 let mouseY = 0;
 
 window.onload = function () {
 
-    canvas = document.getElementById('canvas');
+    canvas = document.getElementById('canvas-bubblechase');
     c = canvas.getContext('2d');
 
     canvas.width = window.innerWidth;
@@ -15,41 +15,41 @@ window.onload = function () {
 
     document.addEventListener('mousemove', throttle(handleMousemove, 10));
     canvas.addEventListener('click', function () {
-        let circle = new Circle(mouseX, mouseY, 0, 0, circleSize);
+        let circle = new Circle(mouseX, mouseY, 0, 0, circleRadius);
         circles.push(circle);
     }, false);
 
     animate();
 };
 
-window.addEventListener('resize',function(){
+window.addEventListener('resize', function () {
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 })
 
 
-function Circle(x, y, dx, dy, circleSize) {
+function Circle(x, y, dx, dy, circleRadius) {
     this.x = x;
     this.y = y;
     this.dx = dx;
     this.dy = dy;
-    let centerX = x + circleSize / 2;
-    let centerY = y - circleSize / 2;
-    let ax=0;
-    let ay=0;
+    let centerX = x + circleRadius;
+    let centerY = y - circleRadius;
+    let ax = 0;
+    let ay = 0;
 
-    let r = Math.floor(Math.random()*255);
-    let g = Math.floor(Math.random()*255);
-    let b = Math.floor(Math.random()*255);
-    let color = 'rgb('+r+','+b+','+g+')';
+    let r = Math.floor(Math.random() * 255);
+    let g = Math.floor(Math.random() * 255);
+    let b = Math.floor(Math.random() * 255);
+    let color = 'rgb(' + r + ',' + b + ',' + g + ')';
 
     this.draw = function () {
         c.beginPath();
-        c.arc(x, y, circleSize, 0, Math.PI * 2, false);
+        c.arc(x, y, circleRadius*2, 0, Math.PI * 2, false);
         c.strokeStyle = color;
         c.stroke();
-    }
+    };
 
     this.update = function () {
         x += dx;
@@ -59,32 +59,31 @@ function Circle(x, y, dx, dy, circleSize) {
         let b = y - mouseY;
         let distance = Math.sqrt(a * a + b * b);
 
-        if (distance ===0){
+        if (distance === 0) {
             distance = Math.random();
         }
 
-        // dx = -1 * a * 0.001 * distance;
-        // dy = -1 * b * 0.001 * distance;
+        dx += ax;
+        dy += ay;
 
-        dx+=ax;
-        dy+=ay;
+        ax = a / distance * 0.5;
+        ay = b / distance * 0.5;
 
-        ax= a / distance*0.5;
-        ay= b / distance*0.5;
-
-        if (distance>=maxDist){
-            dx=dy=0;
+        if (distance >= maxDist) {
+            dx = dy = 0;
         }
 
-        if (x > innerWidth - circleSize) {
-            x = innerWidth-circleSize;
-        }if(x < 0 + circleSize){
-            x=0+circleSize;
+        if (x > innerWidth - circleRadius) {
+            x = innerWidth - circleRadius;
         }
-        if (y < 0 + circleSize) {
-            y = 0+circleSize;
-        }if(y > innerHeight - circleSize){
-            y=innerHeight-circleSize;
+        if (x < 0 + circleRadius) {
+            x = 0 + circleRadius;
+        }
+        if (y < 0 + circleRadius) {
+            y = 0 + circleRadius;
+        }
+        if (y > innerHeight - circleRadius) {
+            y = innerHeight - circleRadius;
         }
     }
 };
@@ -105,9 +104,9 @@ let throttle = (func, delay) => {
     }
 };
 
-let x = Math.floor(Math.random() * innerWidth - circleSize);
+let x = Math.floor(Math.random() * innerWidth - circleRadius);
 let dx = (Math.random() - 0.5) * 8;
-let y = Math.floor(Math.random() * innerHeight - circleSize);
+let y = Math.floor(Math.random() * innerHeight - circleRadius);
 let dy = (Math.random() - 0.5) * 8;
 
 let circles = [];
@@ -115,15 +114,15 @@ let circles = [];
 function animate() {
     requestAnimationFrame(animate);
     c.clearRect(0, 0, innerWidth, innerHeight);
-    c.fillStyle='#c9d0db';
-    c.fillRect(0,0,canvas.width,canvas.height);
+    c.fillStyle = '#c9d0db';
+    c.fillRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < circles.length; i++) {
         circles[i].update();
         circles[i].draw();
     }
 
-    if (circles===[]){
+    if (circles === []) {
         canvas
     }
 

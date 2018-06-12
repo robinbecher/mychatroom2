@@ -7,8 +7,12 @@
 <body>
 <script src="canvas/canvas.js"></script>
 
-<div class="canvas-container">
-    <canvas id="canvas"></canvas>
+<div class="canvas-container-bubblechase" id="canvas-bubblechase-div">
+    <canvas id="canvas-bubblechase"></canvas>
+</div>
+
+<div class="canvas-container-gravity"  id="canvas-gravity">
+    <canvas></canvas>
 </div>
 
 <h2>Chatroom</h2>
@@ -44,13 +48,10 @@
 <h2>Canvas Tests</h2>
 <button class="goButton" onclick="moveToCanvasPage()">Go?</button>
 
-<script>
+<h2>Toggle Background</h2>
+<button class="goButton" onclick="changeBackground()">Boop</button>
 
-    // if(sessionStorage.getItem("name") === null || sessionStorage.getItem("name")==="null" || sessionStorage.getItem("name")===""){
-    //
-    // }else{
-    //      window.location.replace('/chatroom.html');
-    // }
+<script>
 
     // Get the modal
     var modal = document.getElementById('id01');
@@ -60,6 +61,18 @@
         if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
+
+    function changeBackground(){
+        ca = document.getElementById('canvas-bubblechase-div');
+
+        if (ca.style.display==="block"){
+            ca.style.display = "none";
+        }else{
+            ca.style.display = "block";
+        }
+
+        // document.getElementById('canvas-bubblechase-div').style.display="none";
     }
 
     function moveToCanvasPage(){
