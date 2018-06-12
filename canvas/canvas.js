@@ -1,7 +1,7 @@
 let canvas;
 let c;
 const circleSize = 30;
-const maxDist=100;
+const maxDist=150;
 let mouseX = 0;
 let mouseY = 0;
 
@@ -115,10 +115,16 @@ let circles = [];
 function animate() {
     requestAnimationFrame(animate);
     c.clearRect(0, 0, innerWidth, innerHeight);
+    c.fillStyle='#c9d0db';
+    c.fillRect(0,0,canvas.width,canvas.height);
 
     for (let i = 0; i < circles.length; i++) {
         circles[i].update();
         circles[i].draw();
+    }
+
+    if (circles===[]){
+        canvas
     }
 
 };

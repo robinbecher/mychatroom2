@@ -46,6 +46,9 @@ button:hover {
 
 h2 {
     text-align: center;
+    position:relative;
+
+    z-index: +9;
 }
 
 /* Extra styles for the cancel button */
