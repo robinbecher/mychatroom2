@@ -14,16 +14,16 @@ app.get('/index.html', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/canvas/canvas.html', function(req, res){
-    res.sendFile(__dirname + '/canvas/canvas.html');
+app.get('/canvasGravity/canvasGravity.html', function(req, res){
+    res.sendFile(__dirname + '/canvasGravity/canvasGravity.html');
 });
 
-app.get('/canvas/canvas.css', function(req, res){
-    res.sendFile(__dirname + '/canvas/canvas.css');
+app.get('/canvasGravity/canvasGravity.css', function(req, res){
+    res.sendFile(__dirname + '/canvasGravity/canvasGravity.css');
 });
 
-app.get('/canvas/canvas.js', function(req, res){
-    res.sendFile(__dirname + '/canvas/canvas.js');
+app.get('/canvasGravity/canvasGravity-bubblechase.js', function(req, res){
+    res.sendFile(__dirname + '/canvasGravity/canvas-bubblechase.jsblechase.js');
 });
 
 app.get('/chatroom.html', function(req, res){

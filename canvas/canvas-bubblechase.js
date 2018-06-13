@@ -1,39 +1,42 @@
-let canvas;
+let canvasBubblechase;
 let c;
 const circleRadius = 15;
 const maxDist = 150;
 let mouseX = 0;
 let mouseY = 0;
+let stopBubblechaseCanvas=true;
 
-window.onload = function () {
+window.addEventListener('resize', function () {
+    canvasBubblechase.width = window.innerWidth;
+    canvasBubblechase.height = window.innerHeight;
+})
 
-    canvas = document.getElementById('canvas-bubblechase');
-    c = canvas.getContext('2d');
+function destroyBubblechaseCanvas(){
+    stopBubblechaseCanvas=true;
+}
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+function startBubblechaseCanvas(){
+    stopBubblechaseCanvas=false;
+    canvasBubblechase = document.getElementById('canvas-bubblechase');
+    c = canvasBubblechase.getContext('2d');
+
+    canvasBubblechase.width = window.innerWidth;
+    canvasBubblechase.height = window.innerHeight;
 
     document.addEventListener('mousemove', throttle(handleMousemove, 10));
-    canvas.addEventListener('click', function () {
+    canvasBubblechase.addEventListener('click', function () {
         let circle = new Circle(mouseX, mouseY, 0, 0, circleRadius);
         circles.push(circle);
     }, false);
-
     init();
 
     animate();
-};
-
-window.addEventListener('resize', function () {
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-})
+}
 
 function init(){
     for (let i = 0; i<100;i++){
-        let rx = randomIntFromInterval(circleRadius,innerWidth);
-        let ry = randomIntFromInterval(circleRadius, innerHeight);
+        let rx = randomIntFromInterval(circleRadius,window.innerWidth);
+        let ry = randomIntFromInterval(circleRadius, window.innerHeight);
 
         let circle = new Circle(rx,ry,0,0,circleRadius);
         circles.push(circle);
@@ -90,8 +93,8 @@ function Circle(x, y, dx, dy, circleRadius) {
             dx = dy = 0;
         }
 
-        if (x > innerWidth - circleRadius*2.5) {
-            x = innerWidth - circleRadius*2.5;
+        if (x > window.innerWidth - circleRadius*2.5) {
+            x = window.innerWidth - circleRadius*2.5;
         }
         if (x < 0 + circleRadius*2.5) {
             x = 0 + circleRadius*2.5;
@@ -99,8 +102,8 @@ function Circle(x, y, dx, dy, circleRadius) {
         if (y < 0 + circleRadius*2.5) {
             y = 0 + circleRadius*2.5;
         }
-        if (y > innerHeight - circleRadius*2.5) {
-            y = innerHeight - circleRadius * 2.5;
+        if (y > window.innerHeight - circleRadius*2.5) {
+            y = window.innerHeight - circleRadius * 2.5;
         }
     }
 };
@@ -121,26 +124,29 @@ let throttle = (func, delay) => {
     }
 };
 
-let x = Math.floor(Math.random() * innerWidth - circleRadius);
+let x = Math.floor(Math.random() * window.innerWidth - circleRadius);
 let dx = (Math.random() - 0.5) * 8;
-let y = Math.floor(Math.random() * innerHeight - circleRadius);
+let y = Math.floor(Math.random() * window.innerHeight - circleRadius);
 let dy = (Math.random() - 0.5) * 8;
 
 let circles = [];
 
 function animate() {
+    if(stopBubblechaseCanvas){
+        return;
+    }
     requestAnimationFrame(animate);
-    c.clearRect(0, 0, innerWidth, innerHeight);
+    c.clearRect(0, 0, window.innerWidth, window.innerHeight);
     c.fillStyle = '#c9d0db';
-    c.fillRect(0, 0, canvas.width, canvas.height);
+    c.fillRect(0, 0, canvasBubblechase.width, canvasBubblechase.height);
+
+    if (circles === []){
+        return;
+    }
 
     for (let i = 0; i < circles.length; i++) {
         circles[i].update();
         circles[i].draw();
-    }
-
-    if (circles === []) {
-
     }
 
 };

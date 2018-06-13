@@ -4,11 +4,20 @@ body {font-family: Arial, Helvetica, sans-serif;}
 #canvas-bubblechase-div{
     position: fixed;
     background-attachment: fixed;
+    display: block;
+    z-index: -9;
 }
-
-#canvas-gravity{
+#canvas-gravity-div{
     position: fixed;
     display: none;
+    background-attachment: fixed;
+    z-index: -9;
+}
+
+.select{
+    position: center;
+    z-index: +2;
+    width:10%;
 }
 
 /* Full-width input fields */
@@ -48,8 +57,13 @@ button:hover {
 h2 {
     text-align: center;
     position:relative;
-
     z-index: +2;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* Extra styles for the cancel button */

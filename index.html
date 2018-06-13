@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 <body>
-<script src="canvas/canvas.js"></script>
+<script src="canvas/canvas-bubblechase.js"></script>
+<script src="canvas/canvas-gravity.js"></script>
 
 <div class="canvas-container-bubblechase" id="canvas-bubblechase-div">
     <canvas id="canvas-bubblechase"></canvas>
 </div>
 
-<div class="canvas-container-gravity"  id="canvas-gravity">
-    <canvas></canvas>
+<div class="canvas-container-gravity"  id="canvas-gravity-div">
+    <canvas id="canvas-gravity"></canvas>
 </div>
 
 <h2>Chatroom</h2>
@@ -49,6 +50,13 @@
 <button class="goButton" onclick="moveToCanvasPage()">Go?</button>
 
 <h2>Toggle Background</h2>
+<div class="select">
+    <select id="backgroundSelector">
+        <option value="bubblechase">Bubblechase</option>
+        <option value="gravity">Gravity</option>
+    </select>
+</div>
+
 <button class="goButton" onclick="changeBackground()">Boop</button>
 
 <h2>Click anywhere to test the new interactive background</h2>
@@ -66,16 +74,31 @@
     }
 
     function changeBackground(){
-        let ca = document.getElementById('canvas-bubblechase-div');
+        let bc = document.getElementById('canvas-bubblechase-div');
+        let gr = document.getElementById('canvas-gravity-div');
+        let selector = document.getElementById('backgroundSelector');
 
-        if (ca.style.display==="block"){
-            ca.style.display = "none";
-        }else {
-            ca.style.display = "block";
+        switch(selector.value){
+            case 'bubblechase':
+                if (!stopBubblechaseCanvas){
+                    break;
+                }
+                startBubblechaseCanvas();
+                bc.style.display = "block";
+                destroyGravityCanvas();
+                gr.style.display="none";
+                break;
+            case 'gravity':
+                if (!stopGravityCanvas){
+                    break;
+                }
+                startGravityCanvas();
+                gr.style.display= "block";
+                destroyBubblechaseCanvas();
+                bc.style.display="none";
+                break;
         }
 
-
-        // document.getElementById('canvas-bubblechase-div').style.display="none";
     }
 
     function moveToCanvasPage(){
@@ -120,6 +143,7 @@
             }
         }
     }
+    changeBackground();
 </script>
 </body>
 </html>
