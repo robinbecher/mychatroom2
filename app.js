@@ -14,17 +14,22 @@ app.get('/index.html', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/canvasGravity/canvasGravity.html', function(req, res){
-    res.sendFile(__dirname + '/canvasGravity/canvasGravity.html');
+app.get('/canvas/canvas.html', function(req, res){
+    res.sendFile(__dirname + '/canvas/canvas.html');
 });
 
-app.get('/canvasGravity/canvasGravity.css', function(req, res){
-    res.sendFile(__dirname + '/canvasGravity/canvasGravity.css');
+app.get('/canvas/canvas.css', function(req, res){
+    res.sendFile(__dirname + '/canvas/canvas.css');
 });
 
-app.get('/canvasGravity/canvasGravity-bubblechase.js', function(req, res){
-    res.sendFile(__dirname + '/canvasGravity/canvas-bubblechase.jsblechase.js');
+app.get('/canvas/canvas-bubblechase.js', function(req, res){
+    res.sendFile(__dirname + '/canvas/canvas-bubblechase.js');
 });
+
+app.get('/canvas/canvas-gravity.js', function(req, res){
+    res.sendFile(__dirname + '/canvas/canvas-gravity.js');
+});
+
 
 app.get('/chatroom.html', function(req, res){
     //TODO only if user is logged in
