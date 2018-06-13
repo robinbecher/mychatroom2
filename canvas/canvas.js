@@ -19,6 +19,8 @@ window.onload = function () {
         circles.push(circle);
     }, false);
 
+    init();
+
     animate();
 };
 
@@ -27,6 +29,21 @@ window.addEventListener('resize', function () {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 })
+
+function init(){
+    for (let i = 0; i<100;i++){
+        let rx = randomIntFromInterval(circleRadius,innerWidth);
+        let ry = randomIntFromInterval(circleRadius, innerHeight);
+
+        let circle = new Circle(rx,ry,0,0,circleRadius);
+        circles.push(circle);
+    }
+}
+
+function randomIntFromInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
 
 
 function Circle(x, y, dx, dy, circleRadius) {
@@ -123,7 +140,7 @@ function animate() {
     }
 
     if (circles === []) {
-        canvas
+
     }
 
 };
